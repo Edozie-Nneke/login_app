@@ -50,22 +50,21 @@ class AuthProvider extends ChangeNotifier {
 
     var res = await service.signup(
         email: email, password: password, username: username);
-
-    if (res['status'] == 200) {
+   
+    if (res['code'] == 200) {
       // setState(() {
       //   isLoading= false;
       // });
       this.isLoggedIn = isLoggedIn;
 
       notifyListeners();
-      return 'Registration succesfully';
+      return 'Registration successfully';
     }
 
-    if (res['code'] == 406) {
-      throw Exception('Registration unsuccessful!');
+    if (res['code'] == 422) {
+      throw Exception(res['message']??'Registration unsuccessful!');
     }
-
-    return res;
+throw Exception('Registration unsuccessful!');
   }
 
   logout() {

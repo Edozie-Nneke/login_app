@@ -3,8 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class AuthService {
-  Future<dynamic> login(
-      {required String username, required String password}) async {
+  Future<Map> login(
+      {required String username, required String password,},) async {
     try {
       var url =
           Uri.parse('https://celd.josephadegbola.com/wp-json/route/v2/auth');
@@ -20,9 +20,10 @@ class AuthService {
     } catch (e) {
       debugPrint(e.toString());
     }
+      return {};
   }
 
-  Future<dynamic> signup({
+  Future<Map> signup({
     required String email,
     required String password,
     required String username,
@@ -43,5 +44,6 @@ class AuthService {
     } catch (e) {
       debugPrint(e.toString());
     }
+    return {};
   }
 }
